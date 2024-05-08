@@ -1,0 +1,112 @@
+:root {
+    --carousel-button-size: clamp( 2em, 50vw, 4em );
+}
+
+h1 {
+    text-transform: capitalize;
+    margin-inline: auto;
+    width: max-content;
+}
+
+div#carousel-pane {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 80vh;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-inline: auto;
+}
+div#carousel-pane > button {
+    font-size: var(--carousel-button-size);
+    background-color: transparent;
+    transition: 0.5s;
+    border: none;
+}
+div#carousel-pane > img {
+    width: auto;
+    height: 100%;
+    border-radius: 0.625em;
+    transition: 0.5s;
+    z-index: 2;
+    box-shadow: 0.125em 0.125em 0.9375em #919191, -0.125em -0.125em 0.9375em #919191;
+}
+
+div#carousel-nav-pane {
+    display: flex;
+    flex-wrap: nowrap;
+    width: fit-content;
+    margin-inline: auto;
+    column-gap: 0.625em;
+    margin-block-start: 1.5625em;
+}
+div#carousel-nav-pane > .nav-dot {
+    display: block;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 100%;
+    background-color: #000;
+    transition: transform 0.5s;
+    color: #000;
+    cursor: pointer;
+}
+
+div#carousel-nav-pane > .active {
+    background-color: transparent;
+    border: medium solid currentColor;
+}
+
+
+
+/* added micro-interactions to the carousel image, buttons and dot-navigation */
+div#carousel-pane > button:hover {
+    font-size: calc( ( 0.2 * var(--carousel-button-size) ) + var(--carousel-button-size) );
+}
+div#carousel-nav-pane > :not(.active):hover {
+    transform: scaleX(1.5);
+}
+div#carousel-pane > img:hover {
+    height: 103%;
+}
+
+
+
+/* adding responsiveness to the page */
+@media screen and ( max-width: 68.75em ) {
+    :root {
+        --carousel-button-size: 2em;
+    }
+
+    div#carousel-pane > button {
+        display: block;
+        width: 50%;
+        order: 2;
+    } 
+    div#carousel-pane > img {
+        width: 100%;
+        height: auto;
+    }
+    div#carousel-pane {
+        flex-wrap: wrap;
+        width: 98%;
+        align-content: center;
+        row-gap: 1.875em;
+    }
+
+    div#carousel-nav-pane > .nav-dot {
+        width: 0.8125em;
+        height: 0.8125em;
+    }
+
+
+    /* removing the micro-interactions on mobile  */
+    div#carousel-pane > button:hover {
+        font-size: var(--carousel-button-size);
+    }
+    div#carousel-nav-pane > :not(.active):hover {
+        transform: scaleX(1.0);
+    }
+    div#carousel-pane > img:hover {
+        height: 100%;
+    }
+}
